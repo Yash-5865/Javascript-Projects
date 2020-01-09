@@ -1,0 +1,17 @@
+			
+			
+			body{
+				font-family:sans-serif;
+			}
+			#shape{
+				display:none;
+				position:relative;
+			}
+			#container{
+				width:800px;
+				height:800px;
+			}
+			.bold{
+				font-weight:bold;
+			}
+			
