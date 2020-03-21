@@ -1,0 +1,212 @@
+<html>
+	<head>
+		<title>Calculator</title>
+		
+		<style type="text/css">
+		
+			body{
+				font-family:helvetica;
+				background:#DCF5FF;
+			}
+			.container{
+				background: rgb(9, 201, 153);
+				height: 525px;
+				width: 360px;
+				margin: 100px auto;
+				border-radius: 20px;
+				clip-path: circle(15% at 80% 20%);
+				transition: all 0.5s;
+				cursor:pointer;
+			}
+			.container:hover {
+				background: #00BFFF;
+				clip-path: circle(75%);
+				
+			}
+			span{
+				float: right;
+				color: white;
+				font-weight: bold;
+				transition: color .5s;
+				position: relative;
+				top:95px;
+				left:-15px;
+				margin-right: 4%;
+			}
+			.container:hover span{
+				color:rgba(0,0,0,0);
+			}
+			h1{
+				color: white;
+				margin: 0;
+				padding: 10px 100px;
+				text-transform: uppercase; 
+				font-size: 18px;
+				font-weight: normal;
+				border-top-left-radius: 20px;
+				border-top-right-radius: 20px;
+			}
+			p{
+				padding-left:20px;
+			}	
+			form input[type="text"]{
+				width=90px;
+			}
+			input{
+				padding-left:20px;
+			}
+			#billamt{
+				font-size:14px;
+				background-color:#F7F7F7;
+				width:50%;
+				padding:5px 5px 8px 8px;
+			}
+			#billamt:focus{
+				width:80%;
+				border:solid 3px #2980B9;
+				transition: width .35s ease-in-out;
+				outline:none;
+			}
+			#peopleamt{
+				font-size:14px;
+				background-color:#F7F7F7;
+				width:60%;
+				padding:5px 5px 8px 8px;
+			}
+			#peopleamt:focus{
+				background-color:#6678FF;
+				transition: background-color .35s ease-in-out;
+				outline:none;
+			}
+			#serviceQual{
+				padding: 13px 13px 20px 20px;
+				margin-left: 20px;
+				font-size: 15px;
+			}
+			button{
+				text-transform: uppercase;
+				font-weight: bold;
+				display: block;
+				margin: 30px auto;
+				background: #228B22;
+				border-radius: 5px;
+				width: 200px;
+				height: 50px;
+				font-size: 17px;
+				color: white;
+			}
+			button:hover{
+				background: #FD0A2A;
+				border-bottom-color: #111;
+			}
+			button:active{
+				position: relative;
+				top: 1px;
+			}
+			#totalTip{
+				font-size: 30px;
+				margin-top: 5px;
+				text-align: center;
+			}
+			#totalTip:before{
+				content: "Tip amount";
+				font-size: 20px;
+				font-weight: bold;
+				display: block;
+				text-transform: uppercase;
+			}
+			#totalTip sup{
+				font-size: 20px;
+				top: -18px;
+			}
+			#totalTip small{
+				font-size: 20px;
+				font-weight: bold;
+				display: block;
+			}	
+		
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<div class="container">
+		
+			<span>Hover Here</span>
+			<h1>Tip Calculator</h1>
+			
+			<div id="calculator">
+
+				<form>
+					<p>How much was your bill?</p>
+					<p>$ <input id="billamt" type="text" placeholder="Bill Amount"></p>
+
+					<p>How was your service?</p>
+					<p>
+						<select id="serviceQual">
+							<option disabled selected value="0">-- Choose an Option --</option>
+							<option value="0.3">30&#37; &#45; Outstanding</option>
+							<option value="0.2">20&#37; &#45; Good</option>
+							<option value="0.15">15&#37; &#45; It was OK</option>
+							<option value="0.1">10&#37; &#45; Bad</option>
+							<option value="0.05">5&#37; &#45; Terrible</option>
+						</select>
+					</p>
+				</form>
+				<p>How many people are sharing the bill?</p>
+				<p><input id="peopleamt" type="text" placeholder="Number of People"> people</p>
+				<p><button type="button" id="calculate">Calculate!</button></p>
+
+			</div>
+			
+			<div id="totalTip">
+				<sup>$</sup><span id="tip">0.00</span>
+				<small id="each">each</small>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+		
+			function Tip() 
+			{
+				var amount = document.getElementById("billamt").value;
+				var value = document.getElementById("serviceQual").value;
+				var people = document.getElementById("peopleamt").value;
+				var x=value*amount;
+				var y=x/people;
+				y=Math.round(y*1000)/1000;
+				if(amount==="" || value==0) 
+				{
+					alert("Please enter values");
+					return;
+				}
+				
+				if(people==="" || people<=1) 
+				{
+					people=1;
+					document.getElementById("each").style.display = "none";
+				} 
+				else 
+				{
+					document.getElementById("each").style.display = "block";
+				}
+	  
+				document.getElementById("totalTip").style.display = "block";
+				document.getElementById("tip").innerHTML = y;
+			}
+			
+			document.getElementById("totalTip").style.display = "none";
+			document.getElementById("each").style.display = "none";
+
+
+			document.getElementById("calculate").onclick=function()
+			{
+				Tip();
+			}
+			
+		</script>
+		
+	</body>
+
+</html>
