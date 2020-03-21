@@ -1,0 +1,62 @@
+<html>
+	
+	<head>
+	
+		<title>Mouse Follower</title>
+		
+		<link rel="stylesheet" type="text/css" href="mousefollow.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
+		</script>
+		
+	</head>
+	
+	<body>
+		
+		<div class="face">
+			
+			<div class="eyes">
+				
+				<div class="eye1"></div>
+				<div class="eye2"></div>
+			
+			</div>
+		
+		</div>
+		
+		<script>
+			
+			$("body").mousemove(function(event) 
+			{
+				var eye = $(".eye1");
+				var x = (eye.offset().left) + (eye.width() / 2);
+				var y = (eye.offset().top) + (eye.height() / 2);
+				var rad = Math.atan2(event.pageX - x, event.pageY - y);
+				var rot = (rad * (180 / Math.PI) * -1) + 270;
+				eye.css(
+				{
+					'transform': 'rotate(' + rot + 'deg)'
+				});
+				eye = $(".eye2");
+				x = (eye.offset().left) + (eye.width() / 2);
+				y = (eye.offset().top) + (eye.height() / 2);
+				rad = Math.atan2(event.pageX - x, event.pageY - y);
+				rot = (rad * (180 / Math.PI) * -1) + 270;
+				eye.css(
+				{
+					'transform': 'rotate(' + rot + 'deg)'
+				});
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
+
+
+
+
+
+
+
